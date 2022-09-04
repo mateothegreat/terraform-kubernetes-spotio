@@ -53,8 +53,11 @@ resource "kubernetes_cluster_role" "this" {
 
     rule {
         api_groups = [ "" ]
-        resources  = [ "pods", "nodes", "services", "namespaces", "replicationcontrollers", "limitranges", "events", "persistentvolumes", "persistentvolumeclaims" ]
-        verbs      = [ "get", "list" ]
+        resources  = [
+            "pods", "nodes", "services", "namespaces", "replicationcontrollers", "limitranges", "events",
+            "persistentvolumes", "persistentvolumeclaims"
+        ]
+        verbs = [ "get", "list" ]
     }
 
     rule {
@@ -226,6 +229,13 @@ resource "kubernetes_cluster_role_binding" "this" {
 }
 
 resource "kubernetes_deployment" "this" {
+
+    lifecycle {
+
+        ignore_changes = [ spec ]
+
+    }
+
     metadata {
         name      = "spotinst-kubernetes-cluster-controller"
         namespace = "kube-system"
