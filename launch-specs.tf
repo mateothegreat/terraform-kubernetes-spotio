@@ -2,11 +2,12 @@ resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
 
     count = length(var.launch_specs)
 
-    ocean_id         = spotinst_ocean_aws.this.id
-    name             = var.launch_specs[ count.index ].name
-    image_id         = var.launch_specs[ count.index ].image_id
-    instance_types   = var.launch_specs[ count.index ].instance_types
-    root_volume_size = var.launch_specs[ count.index ].root_volume_size
+    ocean_id                    = spotinst_ocean_aws.this.id
+    name                        = var.launch_specs[ count.index ].name
+    image_id                    = var.launch_specs[ count.index ].image_id
+    instance_types              = var.launch_specs[ count.index ].instance_types
+    root_volume_size            = var.launch_specs[ count.index ].root_volume_size
+    associate_public_ip_address = var.launch_specs[ count.index ].associate_public_ip_address
 
     resource_limits {
 

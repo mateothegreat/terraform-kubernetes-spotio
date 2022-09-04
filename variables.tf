@@ -131,14 +131,15 @@ variable "launch_specs" {
 
     type = list(object({
 
-        name               = string
-        image_id           = string
-        root_volume_size   = number
-        max_instance_count = number
-        instance_types     = list(string)
-        spot_percentage    = number
-        tags               = map(string)
-        labels             = map(string)
+        name                        = string
+        image_id                    = string
+        root_volume_size            = number
+        max_instance_count          = number
+        instance_types              = list(string)
+        spot_percentage             = number
+        tags                        = map(string)
+        labels                      = map(string)
+        associate_public_ip_address = bool
 
         #
         # See https://registry.terraform.io/providers/spotinst/spotinst/latest/docs/resources/ocean_aws_launch_spec#autoscale_headrooms
